@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>Texto 1</label>
+        <label>Texto 2 </label>
+    </form>
+</body>
+<script>
+
+    function getQueryString(){
+
+        let url = window.location.href.split('?');
+        let params = {};
+        if(url.length > 1){
+            let queryString = url[1];
+
+            let paramString = queryString.split('&');
+
+            for( p of paramString){
+                [k, v] = p.split('=');
+                params = {...params, [k]: v};
+            }
+        }
+
+        return params;
+    }
+
+    const labels = document.getElementsByTagName('label');
+
+    params = getQueryString();
+
+    if(params.var2 === 'en'){
+        labels[0].innerText = 'Blue';
+        labels[1].innerText = 'Red';
+    }
+    else if(params.var2 === 'pt'){
+        labels[0].innerText = 'Azul';
+        labels[1].innerText = 'Vermelho';
+    }
+
+</script>
+</html>
